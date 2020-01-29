@@ -4,10 +4,12 @@ fetch('passengers.json')
   .then(json => handleData(json))
   .catch(err => console.log(err.message))
 
-
 // Handle Data
 function handleData(json) {
   const fields = json.map(passengers => passengers.fields)
+
+  renderPassengers(fields, 'render-all-passengers')
+  renderPassengers(fields, 'render-male-passengers')
 
   // TOTAL PASSENGER
   const totalPassengers = fields.length
@@ -112,4 +114,28 @@ function handleData(json) {
 
   // Stretch Challenge: How many traveled w/ a nanny?
 
+}
+
+
+// renderPassengers(fields, 'render-all-passengers')
+
+function renderPassengers(data, id) {
+  const root = document.getElementById(id)
+  root.style.width = "600px"
+  root.style.display = "flex"
+  root.style.flexWrap = "wrap"
+
+
+
+  data.forEach(pass => {
+    const el = document.createElement('div')
+    root.appendChild(el)
+
+    el.style.width = "10px"
+    el.style.height = "10px"
+    el.style.backgroundColor = "pink"
+    el.style.margin = "1px"
+
+    // ... do stuff
+  });
 }
