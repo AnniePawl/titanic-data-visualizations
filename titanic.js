@@ -7,7 +7,7 @@ fetch('passengers.json')
 // Variables
 let state = false
 let showGender = false
-let showSurvived = false
+let showCasualties = false
 const elements = []
 const passengerData = []
 
@@ -118,6 +118,13 @@ function handleData(json) {
   console.log('Max Age:' + maxAge)
   console.log('Age Range:' + ageRange)
 
+
+  //  Sort Button Function ------------------------
+  // function sortButtons(button) {
+  //   button.classList.remove('button-selected')
+  //   button.classList.add('button-selected')
+  // }
+
   // Render Passenger Squares ----------------------
   renderPassengers(fields, 'render-all-passengers')
 
@@ -136,10 +143,11 @@ function handleData(json) {
       elements.push(el)  //store element
       passengerData.push(passenger) //store passenger
 
-      el.style.width = "15px"
-      el.style.height = "15px"
+      el.style.width = "20px"
+      el.style.height = "20px"
       el.style.backgroundColor = '#2b2b2b'
       el.style.margin = "1px"
+      el.style.transition = '1s'
       // console.log(el)
 
     });
@@ -152,15 +160,16 @@ showGenderButton.addEventListener('click', (e) => {
   showGender = !showGender
 
   if (showGender) {
-    e.target.style.backgroundColor = '#deb443'
+    e.target.style.backgroundColor = '#3355a3'
+    e.target.style.color = 'white'
     e.target.classList.add('buttonActive')
     // show gender in el
     displayGender()
   } else {
     e.target.style.backgroundColor = 'white';
+    e.target.style.color = 'black'
     e.target.classList.remove('buttonActive')
     displayGender()
-
   }
 })
 
@@ -171,7 +180,7 @@ function displayGender() {
   passengerData.forEach((obj, i) => {
     // console.log(obj)
     const el = elements[i]
-    const color = obj.sex === 'male' ? '#3355a3' : 'pink'
+    let color = obj.sex === 'male' ? '#3355a3' : '#ab3e32'
     if (!showGender) {
       color = '#2b2b2b'
     }
@@ -179,33 +188,33 @@ function displayGender() {
   })
 }
 
-// Toggle Survived Button On/ Off -----------------
-const showSurvivedButton = document.getElementById('showSurvivedButton')
-showSurvivedButton.addEventListener('click', (e) => {
-  showSurvived = !showSurvived
+// Toggle Casualties Button On/ Off -----------------
+const showCastualtiesButton = document.getElementById('showCasualtiesButton')
+showCasualtiesButton.addEventListener('click', (e) => {
+  showCasualties = !showCasualties
 
-  if (showSurvived) {
+  if (showCasualties) {
     e.target.style.backgroundColor = '#fdffba'
     e.target.classList.add('buttonActive')
-    displaySurvivors()
+    displayCasualties()
 
   } else {
     e.target.style.backgroundColor = 'white';
     e.target.classList.remove('buttonActive')
-    displaySurvivors()
+    displayCasualties()
   }
 })
 
-// Display Survivors ---------------------------
-function displaySurvivors() {
-  console.log(showSurvived)
+// Display Casualties---------------------------
+function displayCasualties() {
+  console.log(showCasualties)
   passengerData.forEach((obj, i) => {
     const el = elements[i]
-    const color = obj.survived === 'Yes' ? '#fdffba' : '#2b2b2b'
-    if (!showSurvived) {
-      color = '#2b2b2b'
+    el.innerHTML = obj.survived === "No" ? '☠︎' : ''
+    if (!showCasualties) {
+      el.innerHTML = ''
     }
-    el.style.backgroundColor = color
+
   })
 }
 
