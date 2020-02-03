@@ -1,57 +1,60 @@
-// Load Titanic Passenger Data
+// Load Titanic Passenger Data ------------------
 fetch('passengers.json')
   .then(res => res.json())
   .then(json => handleData(json))
   .catch(err => console.log(err.message))
 
-// Handle Data
+// Variables
+let showGender = false //turn display property off
+
+// Handle Data ----------------------------------
 function handleData(json) {
   const fields = json.map(passengers => passengers.fields)
 
   renderPassengers(fields, 'render-all-passengers')
   renderPassengers(fields, 'render-male-passengers')
 
-  // TOTAL PASSENGER
+  // Total Passengers ----------------------------
   const totalPassengers = fields.length
   document.getElementById("total-passengers").innerHTML = totalPassengers
   console.log("Total Passengers:" + totalPassengers)
 
-  // SURVIVORS
+  // Survivors -----------------------------------
   const Survivors = fields.filter(passenger => {
     return passenger.survived === "Yes"
   })
   document.getElementById("survivors").innerHTML = Survivors.length
   console.log("Number of Survivors:" + Survivors.length)
 
-  // DEATHS
+  // Deaths ---------------------------------------
   const Casualties = fields.filter(passenger => {
     return passenger.survived === "No"
   })
   document.getElementById('deaths').innerHTML = Casualties.length
   console.log("Number of Casualties:" + Casualties.length)
 
-  // Child Passenger (Under 13)
+  // Child Passenger (Under 13) --------------------
   const childPassengers = fields.filter(passenger => {
     return passenger.age < 13
   })
   document.getElementById('childPassengers').innerHTML = childPassengers.length
   console.log("Total Number of Child Passengers: " + childPassengers.length)
 
-  // Number of Female Passengers 
+  // Number of Female Passengers  -----------------
   const femalePassengers = fields.filter(passenger => {
     return passenger.sex === "female"
   })
   document.getElementById('femalePassengers').innerHTML = femalePassengers.length
   console.log("Female Deaths: " + femaleDeaths.length)
 
-  // Number of Male Passengers
+  // Number of Male Passengers --------------------
   const malePassengers = fields.filter(passenger => {
     return passenger.sex === "male"
   })
   document.getElementById('malePassengers').innerHTML = malePassengers.length
   console.log("Male Deaths: " + maleDeaths.length)
 
-  // Male Deaths
+  // Male Deaths ----------------------------------
   const deadMen = malePassengers.reduce((acc, pass) => {
     if (pass.survived === "No") {
       acc += 1
@@ -61,7 +64,7 @@ function handleData(json) {
   document.getElementById('maleDeaths').innerHTML = deadMen
   console.log("Male Deaths: " + deadMen)
 
-  // Female Deaths
+  // Female Deaths -------------------------------
   const deadWomen = femalePassengers.reduce((acc, pass) => {
     if (pass.survived === "No") {
       acc += 1
@@ -71,7 +74,7 @@ function handleData(json) {
   document.getElementById('femaleDeaths').innerHTML = deadWomen
   console.log("Female Deaths: " + deadWomen)
 
-  // Child Deaths (Under 13)
+  // Child Deaths (Under 13) ----------------------
   const deadChildren = childPassengers.reduce((acc, child) => {
     if (child.survived === "No") {
       acc += 1
@@ -111,30 +114,61 @@ function handleData(json) {
   console.log('Max Age:' + maxAge)
   console.log('Age Range:' + ageRange)
 
-  // Stretch Challenge: How many traveled w/ a nanny?
+  // Render Passenger Squares ----------------------
+  renderPassengers(fields, 'render-all-passengers')
 
+  function renderPassengers(data, id) {
+    const root = document.getElementById(id)
+    console.log(root, id)
+
+    root.style.display = "flex"
+    root.style.flexWrap = "wrap"
+
+    data.forEach(passenger => {
+      const elements = []
+      const passengerData = []
+
+      // Make element and attach to DOM
+      const el = document.createElement('div')
+      root.appendChild(el)
+      elements.push(el)  //store element
+      passengerData.push(passenger) //store passenger
+
+      el.style.width = "15px"
+      el.style.height = "15px"
+      el.style.backgroundColor = '#2b2b2b'
+      el.style.margin = "1px"
+      console.log(el)
+
+    });
+  }
 }
 
+// Toggle Filter Button On/Off -------------------
+let state = false
+const showGenderButton = document.getElementById('showGenderButton')
+console.log(showGenderButton)
+showGenderButton.addEventListener('click', (e) => {
+  showGender = !showGender
+  state = !state
+  console.log('is active')
+  if (state) {
+    e.target.style.backgroundColor = '#deb443'
+    e.target.classList.add('buttonActive')
 
-// renderPassengers(fields, 'render-all-passengers')
-
-// function renderPassengers(data, id) {
-//   const root = document.getElementById(id)
-//   root.style.width = "600px"
-//   root.style.display = "flex"
-//   root.style.flexWrap = "wrap"
+  } else {
+    e.target.style.backgroundColor = 'white';
+    e.target.classList.remove('buttonAvtive')
+  }
+})
 
 
 
-//   data.forEach(pass => {
-//     const el = document.createElement('div')
-//     root.appendChild(el)
-
-//     el.style.width = "10px"
-//     el.style.height = "10px"
-//     el.style.backgroundColor = "pink"
-//     el.style.margin = "1px"
-
-//     // ... do stuff
-//   });
-// }
+//  Display Gender -------------------------------
+function displayGender() {
+  passengerData.forEach((obj, i) => {
+    const el = elements[i]
+    const color = obj.sex === 'male' ? 'blue' : 'pink'
+    el.style.backgroundColor = showGenderButton ? color : '#2b2b2b'
+  })
+}

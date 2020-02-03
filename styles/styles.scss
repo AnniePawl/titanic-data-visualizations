@@ -1,6 +1,7 @@
 $titanic-red: #ab3e32;
 $titanic-yellow:#deb443;
 $titanic-black:#2b2b2b;
+$titanic-font:'Playfair Display', serif;
 
 .hero {
   display: flex;
@@ -38,5 +39,27 @@ h1 {
   display:flex;
   justify-content: center;
   align-items: center;
+}
+
+.passenger-squares {
+  display:flex;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+button {
+  height:30px;
+  // background-color:$titanic-yellow;
+  border-radius: 5px;
+  margin:5px;
+  font-family: $titanic-font;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.titanic-buttons {
+  display:flex;
+  justify-content: center;
+
 }
 

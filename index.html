@@ -18,13 +18,23 @@
   <!-- Title -->
   <div class="hero">
     <h1> <span class="titanic">Titanic</span> <br> Data Visualizations</h1>
-
     <hr width="100px">
   </div>
 
   <!-- Passenger Overview -->
   <div class="passenger-overview">
     <p class="heading"> Passenger Overview </p>
+    <!-- Render All Passengers -->
+    <div class="passenger-squares">
+      <div id='render-all-passengers'></div>
+    </div>
+    <!-- Buttons -->
+    <div class="titanic-buttons">
+      <button id='showGenderButton'>Gender</button>
+      <button id='showSurvivorsButton'>Survivors</button>
+      <button id='showDeathsButton'>Deaths</button>
+    </div>
+
     <!-- Survivors -->
     <!-- <div id="render-survivors"></div> -->
     <hr width="600px">
@@ -42,9 +52,6 @@
     <p class="heading"> Class Distribution </p>
     <!-- <div id="render-all-passengers"></div> -->
   </div>
-
-
-
 
   <!-- Demographics -->
   <h2>Demographics</h2>

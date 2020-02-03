@@ -50,4 +50,30 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.passenger-squares {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+button {
+  height: 30px;
+  border-radius: 5px;
+  margin: 5px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.titanic-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
 /*# sourceMappingURL=styles.css.map */
