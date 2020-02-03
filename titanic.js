@@ -5,7 +5,11 @@ fetch('passengers.json')
   .catch(err => console.log(err.message))
 
 // Variables
-let showGender = false //turn display property off
+let state = false
+let showGender = false
+let showSurvived = false
+const elements = []
+const passengerData = []
 
 // Handle Data ----------------------------------
 function handleData(json) {
@@ -119,14 +123,12 @@ function handleData(json) {
 
   function renderPassengers(data, id) {
     const root = document.getElementById(id)
-    console.log(root, id)
+    // console.log(root, id)
 
     root.style.display = "flex"
     root.style.flexWrap = "wrap"
 
     data.forEach(passenger => {
-      const elements = []
-      const passengerData = []
 
       // Make element and attach to DOM
       const el = document.createElement('div')
@@ -138,37 +140,72 @@ function handleData(json) {
       el.style.height = "15px"
       el.style.backgroundColor = '#2b2b2b'
       el.style.margin = "1px"
-      console.log(el)
+      // console.log(el)
 
     });
   }
 }
 
-// Toggle Filter Button On/Off -------------------
-let state = false
+// Toggle Gender Button On/Off -------------------
 const showGenderButton = document.getElementById('showGenderButton')
-console.log(showGenderButton)
 showGenderButton.addEventListener('click', (e) => {
   showGender = !showGender
-  state = !state
-  console.log('is active')
-  if (state) {
+
+  if (showGender) {
     e.target.style.backgroundColor = '#deb443'
     e.target.classList.add('buttonActive')
-
+    // show gender in el
+    displayGender()
   } else {
     e.target.style.backgroundColor = 'white';
-    e.target.classList.remove('buttonAvtive')
+    e.target.classList.remove('buttonActive')
+    displayGender()
+
   }
 })
 
-
-
 //  Display Gender -------------------------------
 function displayGender() {
+
+  console.log(showGender)
   passengerData.forEach((obj, i) => {
+    // console.log(obj)
     const el = elements[i]
-    const color = obj.sex === 'male' ? 'blue' : 'pink'
-    el.style.backgroundColor = showGenderButton ? color : '#2b2b2b'
+    const color = obj.sex === 'male' ? '#3355a3' : 'pink'
+    if (!showGender) {
+      color = '#2b2b2b'
+    }
+    el.style.backgroundColor = color
   })
 }
+
+// Toggle Survived Button On/ Off -----------------
+const showSurvivedButton = document.getElementById('showSurvivedButton')
+showSurvivedButton.addEventListener('click', (e) => {
+  showSurvived = !showSurvived
+
+  if (showSurvived) {
+    e.target.style.backgroundColor = '#fdffba'
+    e.target.classList.add('buttonActive')
+    displaySurvivors()
+
+  } else {
+    e.target.style.backgroundColor = 'white';
+    e.target.classList.remove('buttonActive')
+    displaySurvivors()
+  }
+})
+
+// Display Survivors ---------------------------
+function displaySurvivors() {
+  console.log(showSurvived)
+  passengerData.forEach((obj, i) => {
+    const el = elements[i]
+    const color = obj.survived === 'Yes' ? '#fdffba' : '#2b2b2b'
+    if (!showSurvived) {
+      color = '#2b2b2b'
+    }
+    el.style.backgroundColor = color
+  })
+}
+
