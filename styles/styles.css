@@ -1,3 +1,7 @@
+html {
+  background-color: #fcfcfc;
+}
+
 .hero {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -19,53 +23,46 @@ h1 {
   font-family: 'Playfair Display', serif;
   text-transform: uppercase;
   text-align: center;
-  font-weight: 700;
-  font-size: 2em;
+  font-size: 1.8em;
+  margin-bottom: 5px;
 }
 
 .titanic {
   color: #ab3e32;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 900;
   font-family: 'Playfair Display', serif;
 }
 
 .heading {
   color: #2b2b2b;
-  font-family: 'Playfair Display', serif;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.2em;
+  margin-bottom: 10px;
   text-align: center;
-}
-
-.titanic-image {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .passenger-squares {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-right: 200px;
-  margin-left: 200px;
+  margin-right: 60px;
+  margin-left: 60px;
 }
 
 button {
   height: 30px;
   border-radius: 5px;
-  margin: 5px;
+  margin-top: 15px;
   font-family: "Playfair Display", serif;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .titanic-buttons {
@@ -75,5 +72,14 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.titanic-image-div {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.titanic-image {
+  width: 55vw;
 }
 /*# sourceMappingURL=styles.css.map */
