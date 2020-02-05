@@ -15,23 +15,57 @@
 </head>
 
 <body>
-  <!-- Title -->
+
+  <!-- Title/ Hero -->
   <div class="hero">
     <h1> <span class="titanic">Titanic</span> <br> Data Visualizations</h1>
     <hr width="100px">
+    <p class="heading"> Passenger Overview </p>
+  </div>
+
+  <!-- Toggle Buttons -->
+  <div class='toggle-buttons'>
+    <!-- Gender Toggle-->
+    <div class='toggle-div'>
+      <p class='toggle-label'>Gender</p>
+      <label class="switch">
+        <input id='showGenderButton' type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Children Toggle -->
+    <div class='toggle-div'>
+      <p class='toggle-label'>Children</p>
+      <label class="switch">
+        <input id='showChildenButton' type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Casualties Toggle -->
+    <div class='toggle-div'>
+      <p class='toggle-label'>Casualties</p>
+      <label class="switch">
+        <input id='showCasualtiesButton' type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
   </div>
 
   <!-- Passenger Overview -->
   <div class="passenger-overview">
-    <p class="heading"> Passenger Overview </p>
+
     <!-- Render All Passengers -->
     <div class="passenger-squares">
       <div id='render-all-passengers'></div>
     </div>
+
+
     <!-- Buttons -->
     <div class="titanic-buttons">
-      <button id='showGenderButton'>Gender</button>
-      <button id='showCasualtiesButton'>Casualties</button>
+      <!-- <button id='showGenderButton'>Gender</button> -->
+      <!-- <button id='showCasualtiesButton'>Casualties</button> -->
     </div>
   </div>
 
@@ -58,14 +92,13 @@
   <p>Male Deaths: <span id='maleDeaths'></span></p>
   <p>Child Deaths: <span id='childDeaths'></span></p> -->
 
-
   <!-- Titanic Boat Image -->
   <div class='titanic-image-div'>
     <img class='titanic-image'
       src="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00079563_yvu84f.jpg" />
   </div>
 
-  <!-- Show Overlay -->
+  <!-- Show Passenger Info Overlay -->
   <div id='showOverlay'></div>
   <script src='titanic.js'>
 
