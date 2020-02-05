@@ -40,7 +40,6 @@ function handleData(json) {
       el.style.backgroundColor = '#2b2b2b'
       el.style.margin = "1px"
       el.style.transition = '1s'
-
       el.dataset.index = i // <div data-index="i">
     });
   }
@@ -49,14 +48,37 @@ function handleData(json) {
 //  Passenger Event Listener -------------------------------
 const body = document.querySelector('body') // qs will select 1st instance
 body.addEventListener('click', (e) => { //always takes event object as parameter
-  console.log(e.target.dataset.index)
-  if (e.index !== undefined)
-    console.log(passengerData[index])
-  overlay.innerHTML("Testing")
+  const index = e.target.dataset.index
+  console.log(index)
+
+  if (index !== undefined)
+    showOverlay(index)
+  console.log(passengerData[index])
+
+
 })
 
+function showOverlay(index) {
+  const el = document.getElementById('showOverlay')
+  const { name, sex, age, fare } = passengerData[index]
+  el.style.display = 'block'
+  el.innerHTML =
 
-// Toggle Gender Button On/Off -------------------
+    el.innerHTML = `
+    ${name}
+    ${sex}
+    ${age}
+   ${fare}`
+  // el.style.height = '100px'
+  // el.style.width = '100px'
+  el.style.border = '2px solid black'
+}
+
+
+
+// Remove from DOM
+
+// Toggle Gender Button On/Off -----------------------------
 const showGenderButton = document.getElementById('showGenderButton')
 showGenderButton.addEventListener('click', (e) => {
   showGender = !showGender
@@ -116,7 +138,6 @@ function displayCasualties() {
     if (!showCasualties) {
       el.innerHTML = ''
     }
-
   })
 }
 
