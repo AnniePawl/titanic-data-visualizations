@@ -29,35 +29,35 @@ function handleData(json) {
   document.getElementById("survivors").innerHTML = Survivors.length
   console.log("Number of Survivors:" + Survivors.length)
 
-  // Deaths
+  // Deaths ------------------------------------
   const Casualties = fields.filter(passenger => {
     return passenger.survived === "No"
   })
   document.getElementById('deaths').innerHTML = Casualties.length
   console.log("Number of Casualties:" + Casualties.length)
 
-  // Child Passengers (Under 13)
+  // Child Passengers (Under 13) ------------------
   const childPassengers = fields.filter(passenger => {
     return passenger.age < 13
   })
   document.getElementById('childPassengers').innerHTML = childPassengers.length
   console.log("Total Number of Child Passengers: " + childPassengers.length)
 
-  // Number of Female Passengers 
+  // Number of Female Passengers -------------------
   const femalePassengers = fields.filter(passenger => {
     return passenger.sex === "female"
   })
   document.getElementById('femalePassengers').innerHTML = femalePassengers.length
   console.log("Female Deaths: " + femaleDeaths.length)
 
-  // Number of Male Passengers
+  // Number of Male Passengers ---------------------
   const malePassengers = fields.filter(passenger => {
     return passenger.sex === "male"
   })
   document.getElementById('malePassengers').innerHTML = malePassengers.length
   console.log("Male Deaths: " + maleDeaths.length)
 
-  // Male Deaths
+  // Male Deaths ----------------------------------
   const deadMen = malePassengers.reduce((acc, pass) => {
     if (pass.survived === "No") {
       acc += 1
@@ -67,7 +67,7 @@ function handleData(json) {
   document.getElementById('maleDeaths').innerHTML = deadMen
   console.log("Male Deaths: " + deadMen)
 
-  // Female Deaths
+  // Female Deaths --------------------------------
   const deadWomen = femalePassengers.reduce((acc, pass) => {
     if (pass.survived === "No") {
       acc += 1
@@ -77,7 +77,7 @@ function handleData(json) {
   document.getElementById('femaleDeaths').innerHTML = deadWomen
   console.log("Female Deaths: " + deadWomen)
 
-  // Child Deaths (Under 13)
+  // Child Deaths (Under 13) ----------------------
   const deadChildren = childPassengers.reduce((acc, child) => {
     if (child.survived === "No") {
       acc += 1
@@ -96,13 +96,13 @@ function handleData(json) {
   //   pc[passenger.pclass]
   // })
 
-  // Challenge 1: Name, Fare, PClass, Survived Age
+  // Access Name, Fare, PClass, Survived Age ------
   const allFares = fields
     .filter(passenger => passenger.fare !== undefined)
     .map(({ fare }) => fare)
   console.log("All Fares:" + allFares)
 
-  // AGES
+  // Ages ----------------------------------------
   const allAges = fields.filter(passenger => {
     return passenger.age !== undefined
   }).map(passenger => {

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Star SVG -->
+    <svg id="starSVG" width="500" height="500">
+      <polygon
+        class=""
+        fill="pink"
+        points="361.6,415 224.1,346.7 89.9,421.3 112.4,269.4 0,164.8 151.4,139.2 216.1,0 287.2,136.1 439.6,154.6 
+ 332.2,264.3 	"
+      />
+    </svg>
+
+    <!-- SVG -->
+    <svg id="svg" width="600" height="500">
+      <circle cx="50%" cy="250" r="123" fill="#0ff"></circle>
+    </svg>
+
+    <!-- D3 Script -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script>
+      const d3Array = [2, 7, 4, 1, 9, 4, 3, 7, 8, 9];
+      const randomData = makeRandomData(15);
+
+      function makeRandomData(n) {
+        const array = [];
+        for (let i = 0; i < n; i += 1) {
+          array.push({ a: Math.random(), b: Math.random(), c: Math.random() });
+        }
+        return array;
+      }
+
+      d3.select("#starSVG")
+        .selectAll("polygon")
+        .data(randomData)
+        .enter()
+        .append("polygon")
+        .attr(
+          "points",
+          "361.6,415 224.1,346.7 89.9,421.3 112.4,269.4 0,164.8 151.4,139.2 216.1,0 287.2,136.1 439.6,154.6 332.2,264.3 "
+        )
+        // .attr("transform", "translate(10, 10)")
+        .attr("transform", (d, i) => {
+          const x = d.a * 10;
+          const y = i * 10;
+          return `translate(${x}, ${y})`;
+        })
+        // .attr("cx", (d, i) => (500 / randomData.length) * i)
+        // .attr("cy", (d, i) => d.a * 500)
+        // .attr("r", d => d.c * 100)
+        // .attr("points", (d,i) => )
+        .attr("fill", d => "orange")
+        .attr("opacity", () => 0.5);
+
+      d3.select("#svg")
+        .style("border", "1px solid #000")
+        .style("background-color", "pink")
+        //
+        .selectAll("cirlce")
+        .data(randomData)
+        .enter()
+        // Style all <circle>s in #svg
+        .append("circle")
+        .attr("cx", (d, i) => (500 / randomData.length) * i)
+        .attr("cy", (d, i) => d.a * 500)
+        .attr("r", d => d.c * 100)
+        .attr("fill", d => "green")
+        .attr("opacity", () => 0.5);
+
+      d3.select("body") // select element to work with
+        .selectAll("div")
+        .data(d3Array) // add data to work with
+        .enter() // tells D3 to add new elements if they don't exist
+        .append("div")
+        .text(d => d)
+        // Styles
+        .style("padding", "1em")
+        .style("background-color", "red")
+        .style("margin", "1px")
+        .style("width", d => `${(d / 10) * 100}%`);
+    </script>
+  </body>
+</html>
