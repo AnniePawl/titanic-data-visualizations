@@ -8,16 +8,13 @@
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700&display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,700,900&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/styles.css">
 
 </head>
 
 <body>
   <div class='titanic-dataset'>
-
-
 
     <!-- Title/ Hero -->
     <div class="hero">
@@ -26,6 +23,9 @@
       <p class="heading"> Passenger Overview </p>
     </div>
 
+    <div class='the-data'>
+
+  
     <!-- Toggle Buttons -->
     <div class='toggle-buttons'>
       <!-- Gender Toggle-->
@@ -41,7 +41,7 @@
       <div class='toggle-div'>
         <p class='toggle-label'>Children</p>
         <label class="switch">
-          <input id='showChildenButton' type="checkbox">
+          <input id='showChildrenButton' type="checkbox">
           <span class="slider round"></span>
         </label>
       </div>
@@ -54,7 +54,29 @@
           <span class="slider round"></span>
         </label>
       </div>
+
+     <!-- Class Toggle -->
+     <div clas='toggle-div'>
+      <p class='toggle-label'>Class</p>
+      <label class="switch">
+        <input id='showClassButton' type="checkbox">
+        <span class="slider round"></span>
+      </label>
+     </div>
+    
+
+      <!-- Fare Toggle -->
+      <div class='toggle-div'>
+        <p class='toggle-label'>Fares</p>
+        <label class="switch">
+          <input id='showFareButton' type="checkbox">
+          <span class="slider round"></span>
+        </label>
+
+      </div>
     </div>
+
+
 
     <!-- Passenger Overview -->
     <div class="passenger-overview">
@@ -64,13 +86,14 @@
         <div id='render-all-passengers'></div>
       </div>
 
-
       <!-- Buttons -->
       <div class="titanic-buttons">
         <!-- <button id='showGenderButton'>Gender</button> -->
         <!-- <button id='showCasualtiesButton'>Casualties</button> -->
       </div>
     </div>
+
+  </div>
 
     <!-- Age Distribution -->
     <!-- <div class="age-distribution">
